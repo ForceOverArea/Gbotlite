@@ -1,4 +1,4 @@
-# gbot lite version
+# Gbot lite version
 A sleeker version of my general purpose discord bot.
 
 This bot leverages Discord's ability to store messages in 
