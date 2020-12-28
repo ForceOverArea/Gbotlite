@@ -86,6 +86,11 @@ async def help(ctx, page=1):
             Evaluates a given mathematical expression.
             Using 'ans' in your expression will use the last calculated value in its place.
 
+            **g.convert <from unit> <to unit> <quantity=1>**
+            Converts between a wide variety of units. 
+            Some units are not suported. Keep this in 
+            mind if the command doesn't seem to work.
+
             **g.reminder <role> <hours> <message...>**
             Pings a role with a given message after a specified number of hours have passed.
             Server admin required.

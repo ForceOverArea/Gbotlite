@@ -1,4 +1,4 @@
-import asyncio, discord, requests, youtube_search as yts
+import asyncio, discord, json, requests, youtube_search as yts
 from bs4 import BeautifulSoup
 from discord.ext import commands
 from discord.utils import get
@@ -33,7 +33,7 @@ class misc(commands.Cog):
             )
 
 
-    @commands.command(pass_context=True, aliases=["wp"])
+    @commands.command(aliases=["wp"])
     async def wikipedia(self, ctx, *search_terms:str):
         
         def search_wikipedia(query):
@@ -85,7 +85,7 @@ class misc(commands.Cog):
             await ctx.send(f"Looks like {user} has no avatar set.")
 
 
-    @commands.command(pass_context=True, aliases=['calc'])
+    @commands.command(aliases=['calc'])
     async def calculator(self, ctx, *expression:str):
         global ans
 
@@ -117,6 +117,19 @@ class misc(commands.Cog):
                     colour=discord.Colour.gold()
                 )
             )
+
+
+    @commands.command(aliases=['cvrt'])
+    async def convert(self, ctx, fro:str, to:str, value=1):
+        with open("EES.json", "r") as file:
+            sheet = json.load(file)
+
+        for category in sheet:
+            if (fro in sheet[category]) and (to in sheet[category]):
+                conversion_factor = float(sheet[category][fro]/sheet[category][to])
+                conversion = value*conversion_factor
+
+        await ctx.send(f"{round(conversion, 5)} {to} per {value} {fro}")
 
 
     @commands.command()
