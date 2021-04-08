@@ -129,12 +129,7 @@ class roles(commands.Cog):
         await asyncio.sleep(minutes*60)
         
         await user.remove_roles(muterole)
-        await ctx.send(
-            embed=discord.Embed(
-                title=f":speaker: {user} was unmuted",
-                colour=discord.Colour.blurple()
-            )
-        )
+        
 
 
     @commands.command()
@@ -145,8 +140,13 @@ class roles(commands.Cog):
         mySettings = discache(ctx.guild)
         id_no = await mySettings.get("Muterole")
         muterole = ctx.guild.get_role(int(id_no))
-        user.remove_roles(muterole)
-
+        await user.remove_roles(muterole) 
+        await ctx.send(
+            embed=discord.Embed(
+                title=f":speaker: {user} was unmuted",
+                colour=discord.Colour.blurple()
+            )
+        )
 
     @commands.command()
     async def optin(self, ctx, role:discord.Role, *text):
